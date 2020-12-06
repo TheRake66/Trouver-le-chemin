@@ -93,8 +93,10 @@ namespace Trouver_le_chemin
                 // Reset les cases
                 foreach (Label uneCase in this.lesCases)
                 {
+                    uneCase.Text = "";
                     changeCaseColor(uneCase, this.colorVide);
                 }
+                this.toolStripStatusLabel1.Text = "";
                 this.bonVoisinsTrouves.Clear();
                 this.bonChemin.Clear();
                 this.caseDejaVerifiee.Clear();
