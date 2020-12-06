@@ -133,6 +133,7 @@ namespace Trouver_le_chemin
                     Label uneCase = new Label();
                     uneCase.AutoSize = false;
                     uneCase.TextAlign = ContentAlignment.MiddleCenter;
+                    uneCase.Font = new Font("Consolas", 6F, FontStyle.Regular);
                     uneCase.BackColor = this.colorVide;
                     //uneCase.BorderStyle = BorderStyle.FixedSingle;
                     uneCase.Size = new Size(this.tailleCase, this.tailleCase);
