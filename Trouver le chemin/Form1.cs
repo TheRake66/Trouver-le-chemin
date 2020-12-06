@@ -243,21 +243,22 @@ namespace Trouver_le_chemin
                 }
 
                 // Bloqué
-                if (x == bonX && y == bonY)
+                if (this.derniereVoisinDistance == -1)
                 {
-                    this.bonChemin.Clear();
-                    pathFinding(this.debutX, this.debutY);
-                    return;
+                    // Reviens en arrière
+                    if (this.caseDejaVerifiee.Count > 0) this.caseDejaVerifiee.RemoveAt(this.caseDejaVerifiee.Count - 1);
+                    else
+                    {
+                        this.toolStripStatusLabel1.Text = "Aucun chemin !";
+                        return;
+                    }
                 }
                 // Voisin le plus proche
-                else
-                {
-                    this.caseDejaVerifiee.Add(this.lesCases[bonY, bonX]);
-                    this.bonChemin.Add(this.lesCases[bonY, bonX]);
-                } 
+                else this.bonChemin.Add(this.lesCases[this.bonY, this.bonX]);
 
 
                 // Refresh et recursive
+                this.caseDejaVerifiee.Add(this.lesCases[y, x]); // Dit que la case vient d'être traitée
                 this.Refresh();
                 pathFinding(this.bonX, this.bonY);
             }
