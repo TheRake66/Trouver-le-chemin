@@ -41,6 +41,8 @@
             this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +66,9 @@
             this.toolStripLabel2,
             this.toolStripTextBox2,
             this.toolStripLabel3,
-            this.toolStripTextBox3});
+            this.toolStripTextBox3,
+            this.toolStripSeparator2,
+            this.toolStripLabel4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(716, 31);
@@ -96,7 +100,6 @@
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(40, 31);
             this.toolStripTextBox1.Text = "20";
@@ -115,7 +118,6 @@
             // toolStripTextBox2
             // 
             this.toolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
             this.toolStripTextBox2.Size = new System.Drawing.Size(40, 31);
             this.toolStripTextBox2.Text = "30";
@@ -134,7 +136,6 @@
             // toolStripTextBox3
             // 
             this.toolStripTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox3.Name = "toolStripTextBox3";
             this.toolStripTextBox3.Size = new System.Drawing.Size(40, 31);
             this.toolStripTextBox3.Text = "15";
@@ -157,6 +158,24 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
             this.toolStripStatusLabel1.Text = "Bienvenue !";
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Checked = true;
+            this.toolStripLabel4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
+            this.toolStripLabel4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(67, 28);
+            this.toolStripLabel4.Text = "Animation";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // Form1
             // 
@@ -197,6 +216,8 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripLabel4;
     }
 }
 

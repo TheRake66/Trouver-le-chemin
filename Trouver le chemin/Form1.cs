@@ -31,6 +31,7 @@ namespace Trouver_le_chemin
         List<int[]> bonVoisinsTrouves = new List<int[]>();
         List<Label> caseDejaVerifiee = new List<Label>();
         List<Label> bonChemin = new List<Label>();
+        List<Label> caseBannie = new List<Label>();
 
 
         int lastVoisinIndex;
@@ -97,6 +98,7 @@ namespace Trouver_le_chemin
                     changeCaseColor(uneCase, this.colorVide);
                 }
                 this.toolStripStatusLabel1.Text = "";
+                this.caseBannie.Clear();
                 this.bonVoisinsTrouves.Clear();
                 this.bonChemin.Clear();
                 this.caseDejaVerifiee.Clear();
@@ -104,6 +106,10 @@ namespace Trouver_le_chemin
                 // Lance une recherche
                 pathFinding(this.debutX, this.debutY);
             }
+        }
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+            this.toolStripLabel4.Checked = !this.toolStripLabel4.Checked;
         }
 
         private void initialiseCases()
@@ -188,7 +194,7 @@ namespace Trouver_le_chemin
         private void checkVoisin(int x, int y)
         {
             // Si la case n'a pas déjà été testée et que c'est pas un obstacle
-            if (!this.caseDejaVerifiee.Contains(this.lesCases[y, x]) && this.lesCases[y, x].BackColor != this.colorObstacle)
+            if (!this.caseBannie.Contains(this.lesCases[y, x]) && !this.caseDejaVerifiee.Contains(this.lesCases[y, x]) && this.lesCases[y, x].BackColor != this.colorObstacle)
             {
                 changeCaseColor(this.lesCases[y, x], this.colorCheck);
                 // Calcul la distance entre deux points sans tenir compte des obstacle
@@ -246,21 +252,21 @@ namespace Trouver_le_chemin
                 if (this.derniereVoisinDistance == -1)
                 {
                     // Reviens en arrière
-                    if (this.caseDejaVerifiee.Count > 0) this.caseDejaVerifiee.RemoveAt(this.caseDejaVerifiee.Count - 1);
-                    else
-                    {
-                        this.toolStripStatusLabel1.Text = "Aucun chemin !";
-                        return;
-                    }
+                    this.bonChemin.Clear();
+                    this.caseDejaVerifiee.Clear();
+                    this.caseBannie.Add(this.lesCases[y, x]); // Dit que la case vient d'être traitée
+                    pathFinding(this.debutX, this.debutY);
                 }
-                // Voisin le plus proche
-                else this.bonChemin.Add(this.lesCases[this.bonY, this.bonX]);
+                else
+                {
+                    // Voisin le plus proche
+                    this.bonChemin.Add(this.lesCases[this.bonY, this.bonX]);
 
-
-                // Refresh et recursive
-                this.caseDejaVerifiee.Add(this.lesCases[y, x]); // Dit que la case vient d'être traitée
-                this.Refresh();
-                pathFinding(this.bonX, this.bonY);
+                    // Refresh et recursive
+                    this.caseDejaVerifiee.Add(this.lesCases[y, x]); // Dit que la case vient d'être traitée
+                    if (this.toolStripLabel4.Checked) this.Refresh();
+                    pathFinding(this.bonX, this.bonY);
+                }
             }
         }
 
@@ -285,7 +291,7 @@ namespace Trouver_le_chemin
                     changeCaseColor(uneCase, this.colorValide);
                 }
 
-                this.toolStripStatusLabel1.Text = "Chemin de trouvé de taille : " + this.cheminLePlusCourt.Count;
+                this.toolStripStatusLabel1.Text = "Chemin trouvé avec une taille de : " + this.cheminLePlusCourt.Count;
             }
             else
             {
@@ -302,10 +308,10 @@ namespace Trouver_le_chemin
                 if (y + 1 < this.lesCases.GetLength(0)) checkVoisinFounded(x, y + 1);
 
                 // Prend le voisin avec le plus de poids dans la liste des chemins trouvé
-                this.cheminLePlusCourt.Add(this.lesCases[this.lastVoisinY, this.lastVoisinX]);
+                if (this.lastVoisinIndex != -1) this.cheminLePlusCourt.Add(this.lesCases[this.lastVoisinY, this.lastVoisinX]);
 
                 // Refresh et recursive
-                this.Refresh();
+                if (this.toolStripLabel4.Checked) this.Refresh();
                 pathFounded(this.lastVoisinX, this.lastVoisinY);
             }
 
